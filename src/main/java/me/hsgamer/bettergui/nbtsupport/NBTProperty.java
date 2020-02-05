@@ -5,8 +5,7 @@ import me.hsgamer.bettergui.BetterGUI;
 import me.hsgamer.bettergui.object.Icon;
 import me.hsgamer.bettergui.object.property.item.ItemProperty;
 import me.hsgamer.bettergui.util.CommonUtils;
-import me.ialistannen.mininbt.ItemNBTUtil;
-import me.ialistannen.mininbt.NbtParser;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -32,7 +31,7 @@ public class NBTProperty extends ItemProperty<String, String> {
   @Override
   public ItemStack parse(Player player, ItemStack itemStack) {
     try {
-      return ItemNBTUtil.setNBTTag(NbtParser.parse(getParsed(player)), itemStack);
+      return Bukkit.getUnsafe().modifyItemStack(itemStack, getParsed(player));
     } catch (Exception e) {
       BetterGUI.getInstance().getLogger().log(Level.WARNING, "Error when parsing item: " + getValue(), e);
       CommonUtils.sendMessage(player,
@@ -44,6 +43,6 @@ public class NBTProperty extends ItemProperty<String, String> {
 
   @Override
   public boolean compareWithItemStack(Player player, ItemStack itemStack) {
-    throw new UnsupportedOperationException("Not support comparing with the new method");
+    throw new UnsupportedOperationException("No support comparing with the new method");
   }
 }
