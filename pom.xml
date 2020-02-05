@@ -41,6 +41,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <minimizeJar>true</minimizeJar>
               <createDependencyReducedPom>false</createDependencyReducedPom>
             </configuration>
           </execution>
@@ -56,6 +57,10 @@
   </build>
 
   <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
     <repository>
       <id>papermc-repo</id>
       <url>https://papermc.io/repo/repository/maven-public/</url>
