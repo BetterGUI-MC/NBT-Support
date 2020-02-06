@@ -1,11 +1,9 @@
 package me.hsgamer.bettergui.nbtsupport;
 
-import java.util.logging.Level;
-import me.hsgamer.bettergui.BetterGUI;
+import de.tr7zw.changeme.nbtapi.NBTContainer;
+import de.tr7zw.changeme.nbtapi.NBTItem;
 import me.hsgamer.bettergui.object.Icon;
 import me.hsgamer.bettergui.object.property.item.ItemProperty;
-import me.hsgamer.bettergui.util.CommonUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,15 +28,9 @@ public class NBTProperty extends ItemProperty<String, String> {
 
   @Override
   public ItemStack parse(Player player, ItemStack itemStack) {
-    try {
-      return Bukkit.getUnsafe().modifyItemStack(itemStack, getParsed(player));
-    } catch (Exception e) {
-      BetterGUI.getInstance().getLogger().log(Level.WARNING, "Error when parsing item: " + getValue(), e);
-      CommonUtils.sendMessage(player,
-          BetterGUI.getInstance().getMessageConfig().get(String.class, "invalid-nbt-data",
-              "&cCannot apply NBT data to the item. Inform the staff"));
-    }
-    return itemStack;
+    NBTItem nbtItem = new NBTItem(itemStack);
+    nbtItem.mergeCompound(new NBTContainer(getParsed(player)));
+    return nbtItem.getItem();
   }
 
   @Override
