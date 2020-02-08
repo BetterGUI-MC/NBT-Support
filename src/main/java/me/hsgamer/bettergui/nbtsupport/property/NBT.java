@@ -1,4 +1,4 @@
-package me.hsgamer.bettergui.nbtsupport;
+package me.hsgamer.bettergui.nbtsupport.property;
 
 import de.tr7zw.changeme.nbtapi.NBTContainer;
 import de.tr7zw.changeme.nbtapi.NBTItem;
@@ -7,11 +7,11 @@ import me.hsgamer.bettergui.object.property.item.ItemProperty;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class NBTProperty extends ItemProperty<String, String> {
+public class NBT extends ItemProperty<String, String> {
 
   private boolean hasVariable = false;
 
-  public NBTProperty(Icon icon) {
+  public NBT(Icon icon) {
     super(icon);
   }
 
