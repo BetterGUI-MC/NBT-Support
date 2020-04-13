@@ -9,21 +9,13 @@ import org.bukkit.inventory.ItemStack;
 
 public class NBT extends ItemProperty<String, String> {
 
-  private boolean hasVariable = false;
-
   public NBT(Icon icon) {
     super(icon);
   }
 
   @Override
-  public void setValue(Object input) {
-    super.setValue(input);
-    hasVariable = getIcon().hasVariables(getValue());
-  }
-
-  @Override
   public String getParsed(Player player) {
-    return hasVariable ? getIcon().setVariables(getValue(), player) : getValue();
+    return parseFromString(getValue(), player);
   }
 
   @Override
